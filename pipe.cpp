@@ -13,13 +13,12 @@ int main()
 	int pipefd[2];
 	int pid1 = 0, pid2 = 0, pid3 = 0;
 	char buffer [BUFFER_SIZE];
-	//memset(buffer,'\0',sizeof(buffer)); //no need , first write will set it up
 
 	pipe(pipefd);
 
 
 
-	string st = "Arash";
+	string st = "Text 1";
 	cout <<"--- PID 0 ---\n";
 	cout <<"Write: "<<st<<"\n-------------\n";
 	write(pipefd[1],st.c_str(),st.length());
@@ -38,7 +37,7 @@ int main()
 		string s = buffer;
 		cout <<"--- PID 1 ---\n";
 		cout <<"Read: "<<s<<endl;
-		s = s + " Dargahi";
+		s = s + " Text2";
 		write(pipefd[1],s.c_str(),s.length());
 		cout <<"Write: "<<s <<"\n-------------\n";
 		sleep(SLEEP_TIME);
@@ -59,7 +58,7 @@ int main()
 		string s = buffer;
 		cout <<"--- PID 2 ---\n";
 		cout <<"Read: "<<s<<endl;
-		s = s + " Nobari";
+		s = s + " Text3";
 		write(pipefd[1],s.c_str(),s.length());
 		cout <<"Write: "<<s <<"\n-------------\n";
 		sleep(SLEEP_TIME);
